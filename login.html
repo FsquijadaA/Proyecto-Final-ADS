@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CDB-Education</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container" id="loginBox">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="loginUsername">Nombre de Usuario</label>
+                    <input type="text" id="loginUsername" required>
+                </div>
+                <div class="input-group">
+                    <label for="loginPassword">Contraseña</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit">Iniciar Sesión</button>
+                    <button type="button" onclick="showRecoverPassword()">Recuperar Contraseña</button>
+                </div>
+                <div class="extra-options">
+                    <button type="button" onclick="showCreateAccount()">Crear Cuenta</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-container" id="createAccountBox" style="display: none;">
+            <h2>Crear Cuenta</h2>
+            <form id="createAccountForm">
+                <div class="input-group">
+                    <label for="newUsername">Nombre de Usuario</label>
+                    <input type="text" id="newUsername" required>
+                </div>
+                <div class="input-group">
+                    <label for="newPassword">Contraseña</label>
+                    <input type="password" id="newPassword" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirmPassword">Confirmar Contraseña</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit">Crear Cuenta</button>
+                    <button type="button" onclick="showLogin()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-container" id="recoverPasswordBox" style="display: none;">
+            <h2>Recuperar Contraseña</h2>
+            <form id="recoverPasswordForm">
+                <div class="input-group">
+                    <label for="recoverUsername">Nombre de Usuario</label>
+                    <input type="text" id="recoverUsername" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit">Recuperar Contraseña</button>
+                    <button type="button" onclick="showLogin()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>

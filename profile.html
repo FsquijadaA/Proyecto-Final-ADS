@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil - CDB-Education</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <h2>Editar Perfil</h2>
+        </div>
+        <div class="profile-content">
+            <div class="profile-pic-section">
+                <img src="profile-pic.png" alt="Profile Picture" class="profile-pic" id="profilePic">
+                <input type="file" id="profilePicInput" accept="image/*" style="display: none;">
+                <button class="edit-button" onclick="document.getElementById('profilePicInput').click()">Editar</button>
+            </div>
+            <div class="profile-details">
+                <div class="input-group">
+                    <label for="profileName">Nombre</label>
+                    <input type="text" id="profileName" required>
+                </div>
+                <div class="input-group">
+                    <label for="profileEmail">Correo Electrónico</label>
+                    <input type="email" id="profileEmail" required>
+                </div>
+                <div class="input-group">
+                    <label for="profilePhone">Teléfono</label>
+                    <input type="tel" id="profilePhone" required>
+                </div>
+                <div class="input-group">
+                    <label for="profileAddress">Dirección</label>
+                    <input type="text" id="profileAddress" required>
+                </div>
+                <div class="input-group">
+                    <label for="profilePassword">Contraseña</label>
+                    <input type="password" id="profilePassword" required>
+                </div>
+                <div class="button-group">
+                    <button type="button" onclick="saveProfile()">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="profile.js"></script>
+</body>
+</html>

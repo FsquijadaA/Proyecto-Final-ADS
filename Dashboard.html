@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CDB-Education</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="profile-section">
+            <img src="profile-pic.png" alt="Profile Picture" class="profile-pic" id="dashboardProfilePic">
+            <h2 id="username">Nombre de Usuario</h2>
+            <button onclick="window.location.href='profile.html'">Editar Perfil</button>
+        </div>
+        <div class="main-dashboard">
+            <div class="top-widgets">
+                <div class="widget clock">
+                    <h3>Reloj</h3>
+                    <p id="clock">--:--</p>
+                </div>
+                <div class="widget notifications">
+                    <h3>Notificaciones</h3>
+                    <p>Últimas notificaciones</p>
+                </div>
+            </div>
+            <div class="graphs-charts">
+                <div class="widget">
+                    <h3>Gráfico 1</h3>
+                    <canvas id="chart1"></canvas>
+                </div>
+                <div class="widget">
+                    <h3>Gráfico 2</h3>
+                    <canvas id="chart2"></canvas>
+                </div>
+            </div>
+            <div class="bottom-widgets">
+                <div class="widget academic-scores">
+                    <h3>Calificaciones Académicas</h3>
+                    <p>25+</p>
+                </div>
+                <div class="widget schedule">
+                    <h3>Horario</h3>
+                    <p>Horario de clases</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
