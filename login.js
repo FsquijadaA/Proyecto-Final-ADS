@@ -32,15 +32,26 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         const username = document.getElementById('loginUsername').value;
         const password = document.getElementById('loginPassword').value;
+        const role = document.getElementById('loginRole').value;
 
         const users = JSON.parse(localStorage.getItem('users')) || [];
-        const user = users.find(user => user.username === username && user.password === password);
+        const user = users.find(user => user.username === username && user.password === password && user.role === role);
 
         if (user) {
             localStorage.setItem('currentUser', JSON.stringify(user));
-            window.location.href = 'dashboard.html';
+            switch (role) {
+                case 'teacher':
+                    window.location.href = 'dashboard_teacher.html';
+                    break;
+                case 'student':
+                    window.location.href = 'dashboard.html';
+                    break;
+                case 'parent':
+                    window.location.href = 'dashboard_parent.html';
+                    break;
+            }
         } else {
-            alert('Usuario o contraseña incorrectos.');
+            alert('Usuario, contraseña o rol incorrectos.');
         }
     });
 
@@ -50,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = document.getElementById('newUsername').value;
         const password = document.getElementById('newPassword').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
+        const role = document.getElementById('newRole').value;
 
         if (password !== confirmPassword) {
             alert('Las contraseñas no coinciden.');
@@ -64,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        users.push({ username, password });
+        users.push({ username, password, role });
         localStorage.setItem('users', JSON.stringify(users));
         alert('Cuenta creada exitosamente.');
         showLogin();

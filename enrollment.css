@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.enrollment-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+}
+
+.enrollment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.enrollment-header label {
+    margin-right: 10px;
+}
+
+.enrollment-header select {
+    margin-right: 20px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.enrollment-header button {
+    background-color: #3498db;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #ecf0f1;
+    cursor: pointer;
+}
+
+.enrollment-header button:hover {
+    background-color: #2980b9;
+}
+
+.subject-list {
+    margin-top: 20px;
+}
+
+.subject-list h3 {
+    margin-bottom: 10px;
+}
+
+.subject-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.subject-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ecf0f1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.subject-list li button {
+    background-color: #e74c3c;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #ecf0f1;
+    cursor: pointer;
+}
+
+.subject-list li button:hover {
+    background-color: #c0392b;
+}

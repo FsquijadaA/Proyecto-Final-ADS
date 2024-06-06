@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso de Calificaciones - CDB-Education</title>
+    <link rel="stylesheet" href="grading.css">
+</head>
+<body>
+    <div class="grading-container">
+        <h2>Ingreso de Calificaciones</h2>
+        <div class="grading-header">
+            <label for="groupSelect">Grupo:</label>
+            <select id="groupSelect">
+                <option value="group1">Grupo 1</option>
+                <option value="group2">Grupo 2</option>
+                <option value="group3">Grupo 3</option>
+            </select>
+            <label for="subjectSelect">Materia:</label>
+            <select id="subjectSelect">
+                <!-- Las opciones de materias se cargarán dinámicamente -->
+            </select>
+            <button id="loadStudents">Cargar Estudiantes</button>
+        </div>
+        <div class="student-list">
+            <ul id="studentList">
+                <!-- Lista de estudiantes será generada dinámicamente -->
+            </ul>
+        </div>
+        <button id="saveGrades">Guardar Calificaciones</button>
+    </div>
+    <script src="grading.js"></script>
+</body>
+</html>

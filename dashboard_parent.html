@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Padre - CDB-Education</title>
+    <link rel="stylesheet" href="dashboard_parent.css">
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css' rel='stylesheet' />
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="profile-section">
+            <img src="profile-pic.png" alt="Profile Picture" class="profile-pic" id="dashboardProfilePic">
+            <h2 id="username">Nombre de Usuario</h2>
+            <button onclick="window.location.href='profile.html'">Editar Perfil</button>
+        </div>
+        <div class="main-dashboard">
+            <div class="top-widgets">
+                <div class="widget clock">
+                    <h3>Reloj</h3>
+                    <p id="clock">--:--</p>
+                </div>
+                <div class="widget notifications">
+                    <h3>Notificaciones</h3>
+                    <ul id="notificationsList"></ul>
+                </div>
+            </div>
+            <div class="bottom-widgets">
+                <div class="widget grades">
+                    <h3>Calificaciones</h3>
+                    <ul id="gradesList"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js'></script>
+    <script src="dashboard_parent.js"></script>
+</body>
+</html>

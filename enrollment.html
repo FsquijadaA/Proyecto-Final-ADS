@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripción de Materias - CDB-Education</title>
+    <link rel="stylesheet" href="enrollment.css">
+</head>
+<body>
+    <div class="enrollment-container">
+        <h2>Inscripción de Materias</h2>
+        <div class="enrollment-header">
+            <label for="subjectSelect">Materia:</label>
+            <select id="subjectSelect">
+                <!-- Las opciones de materias se cargarán dinámicamente -->
+            </select>
+            <label for="groupSelect">Grupo:</label>
+            <select id="groupSelect">
+                <!-- Las opciones de grupos se cargarán dinámicamente -->
+            </select>
+            <button id="enrollSubject">Inscribir</button>
+        </div>
+        <div class="subject-list">
+            <h3>Materias Inscritas</h3>
+            <ul id="enrolledSubjectsList">
+                <!-- Lista de materias inscritas será generada dinámicamente -->
+            </ul>
+        </div>
+    </div>
+    <script src="enrollment.js"></script>
+</body>
+</html>

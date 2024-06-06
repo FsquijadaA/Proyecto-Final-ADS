@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - CDB-Education</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <title>Dashboard Estudiante - CDB-Education</title>
+    <link rel="stylesheet" href="dashboard_student.css">
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css' rel='stylesheet' />
 </head>
 <body>
     <div class="dashboard-container">
@@ -21,32 +22,66 @@
                 </div>
                 <div class="widget notifications">
                     <h3>Notificaciones</h3>
-                    <p>Últimas notificaciones</p>
+                    <ul id="notificationsList"></ul>
                 </div>
             </div>
-            <div class="graphs-charts">
-                <div class="widget">
-                    <h3>Gráfico 1</h3>
-                    <canvas id="chart1"></canvas>
-                </div>
-                <div class="widget">
-                    <h3>Gráfico 2</h3>
-                    <canvas id="chart2"></canvas>
-                </div>
+            <div class="middle-widgets">
+                <button class="main-button" onclick="showEnrollSubjects()">Inscribir Materias</button>
             </div>
             <div class="bottom-widgets">
-                <div class="widget academic-scores">
-                    <h3>Calificaciones Académicas</h3>
-                    <p>25+</p>
+                <div class="widget enrolled-subjects">
+                    <h3>Materias Inscritas</h3>
+                    <ul id="enrolledSubjectsList"></ul>
                 </div>
-                <div class="widget schedule">
-                    <h3>Horario</h3>
-                    <p>Horario de clases</p>
+                <div class="widget grades">
+                    <h3>Calificaciones</h3>
+                    <ul id="gradesList"></ul>
                 </div>
+            </div>
+            <div class="calendar-widget">
+                <h3>Calendario</h3>
+                <div id="calendar"></div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="dashboard.js"></script>
+
+    <div class="modal" id="enrollModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Inscribir Materias</h2>
+            <form id="enrollForm">
+                <div class="input-group">
+                    <label for="subjectsSelect">Materias Disponibles</label>
+                    <select id="subjectsSelect" multiple required></select>
+                </div>
+                <div class="input-group">
+                    <label for="groupsSelect">Grupos Disponibles</label>
+                    <select id="groupsSelect" required></select>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="main-button">Inscribir</button>
+                    <button type="button" class="secondary-button" onclick="closeModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js'></script>
+    <script>
+        function showEnrollSubjects() {
+            document.getElementById('enrollModal').style.display = 'block';
+            document.getElementById('modalTitle').textContent = 'Inscribir Materias';
+            renderAvailableSubjects();
+            renderAvailableGroups();
+        }
+
+        function closeModal() {
+            document.getElementById('enrollModal').style.display = 'none';
+        }
+
+        window.showEnrollSubjects = showEnrollSubjects;
+        window.closeModal = closeModal;
+    </script>
+    <script src="dashboard_student.js"></script>
 </body>
 </html>

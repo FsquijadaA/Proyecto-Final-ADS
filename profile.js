@@ -30,6 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 reader.readAsDataURL(file);
             }
         });
+
+        if (currentUser.role === 'student') {
+            document.getElementById('parentSection').style.display = 'block';
+            document.getElementById('profileParent').value = currentUser.parent || '';
+        } else {
+            document.getElementById('parentSection').style.display = 'none';
+        }
     }
 });
 
@@ -40,7 +47,8 @@ function saveProfile() {
         phone: document.getElementById('profilePhone').value,
         address: document.getElementById('profileAddress').value,
         password: document.getElementById('profilePassword').value,
-        profilePic: document.getElementById('profilePic').src
+        profilePic: document.getElementById('profilePic').src,
+        parent: document.getElementById('profileParent') ? document.getElementById('profileParent').value : null
     };
 
     let users = JSON.parse(localStorage.getItem('users')) || [];

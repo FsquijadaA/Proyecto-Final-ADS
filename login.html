@@ -19,6 +19,14 @@
                     <label for="loginPassword">Contraseña</label>
                     <input type="password" id="loginPassword" required>
                 </div>
+                <div class="input-group">
+                    <label for="loginRole">Rol</label>
+                    <select id="loginRole" required>
+                        <option value="student">Estudiante</option>
+                        <option value="teacher">Profesor</option>
+                        <option value="parent">Padre/Madre o Responsable</option>
+                    </select>
+                </div>
                 <div class="button-group">
                     <button type="submit">Iniciar Sesión</button>
                     <button type="button" onclick="showRecoverPassword()">Recuperar Contraseña</button>
@@ -43,6 +51,14 @@
                 <div class="input-group">
                     <label for="confirmPassword">Confirmar Contraseña</label>
                     <input type="password" id="confirmPassword" required>
+                </div>
+                <div class="input-group">
+                    <label for="newRole">Rol</label>
+                    <select id="newRole" required>
+                        <option value="student">Estudiante</option>
+                        <option value="teacher">Profesor</option>
+                        <option value="parent">Padre/Madre o Responsable</option>
+                    </select>
                 </div>
                 <div class="button-group">
                     <button type="submit">Crear Cuenta</button>

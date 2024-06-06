@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Profesor - CDB-Education</title>
+    <link rel="stylesheet" href="dashboard_teacher.css">
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css' rel='stylesheet' />
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="profile-section">
+            <img src="profile-pic.png" alt="Profile Picture" class="profile-pic" id="dashboardProfilePic">
+            <h2 id="username">Nombre de Usuario</h2>
+            <button onclick="window.location.href='profile.html'">Editar Perfil</button>
+        </div>
+        <div class="main-dashboard">
+            <div class="top-widgets">
+                <div class="widget clock">
+                    <h3>Reloj</h3>
+                    <p id="clock">--:--</p>
+                </div>
+                <div class="widget notifications">
+                    <h3>Notificaciones</h3>
+                    <p>Últimas notificaciones</p>
+                </div>
+            </div>
+            <div class="middle-widgets">
+                <button class="main-button" onclick="showAssignGradeForm()">Calificar</button>
+            </div>
+            <div class="bottom-widgets">
+                <div class="widget subjects">
+                    <h3>Materias</h3>
+                    <button class="secondary-button" onclick="showAddSubjectForm()">Agregar Materia</button>
+                    <ul id="subjectsList"></ul>
+                </div>
+                <div class="widget groups">
+                    <h3>Grupos</h3>
+                    <button class="secondary-button" onclick="showAddGroupForm()">Agregar Grupo</button>
+                    <ul id="groupsList"></ul>
+                </div>
+            </div>
+            <div class="calendar-widget">
+                <h3>Calendario</h3>
+                <div id="calendar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="subjectModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Agregar Materia</h2>
+            <form id="subjectForm">
+                <div class="input-group">
+                    <label for="subjectName">Nombre de la Materia</label>
+                    <input type="text" id="subjectName" required>
+                </div>
+                <div class="input-group">
+                    <label for="daysSelect">Días</label>
+                    <select id="daysSelect" multiple required>
+                        <option value="lunes">Lunes</option>
+                        <option value="martes">Martes</option>
+                        <option value="miércoles">Miércoles</option>
+                        <option value="jueves">Jueves</option>
+                        <option value="viernes">Viernes</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="startTime">Hora de Inicio</label>
+                    <input type="time" id="startTime" required>
+                </div>
+                <div class="input-group">
+                    <label for="endTime">Hora de Fin</label>
+                    <input type="time" id="endTime" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="main-button">Guardar</button>
+                    <button type="button" class="secondary-button" onclick="closeModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="groupModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitleGroup">Agregar Grupo</h2>
+            <form id="groupForm">
+                <div class="input-group">
+                    <label for="groupName">Nombre del Grupo</label>
+                    <input type="text" id="groupName" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="main-button">Guardar</button>
+                    <button type="button" class="secondary-button" onclick="closeModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="gradeModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitleGrade">Asignar Calificación</h2>
+            <form id="gradeForm">
+                <div class="input-group">
+                    <label for="studentUsernameSelect">Nombre del Estudiante</label>
+                    <select id="studentUsernameSelect" required>
+                        <!-- Opciones de estudiantes se llenarán dinámicamente -->
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="gradeSubjectSelect">Materia</label>
+                    <select id="gradeSubjectSelect" required>
+                        <!-- Opciones de materias se llenarán dinámicamente -->
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="grade">Calificación</label>
+                    <input type="number" id="grade" min="0" max="10" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="main-button">Asignar</button>
+                    <button type="button" class="secondary-button" onclick="closeModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js'></script>
+    <script>
+        function showAddSubjectForm() {
+            document.getElementById('subjectModal').style.display = 'block';
+            document.getElementById('modalTitle').textContent = 'Agregar Materia';
+        }
+
+        function showAddGroupForm() {
+            document.getElementById('groupModal').style.display = 'block';
+            document.getElementById('modalTitleGroup').textContent = 'Agregar Grupo';
+        }
+
+        function showAssignGradeForm() {
+            document.getElementById('gradeModal').style.display = 'block';
+            document.getElementById('modalTitleGrade').textContent = 'Asignar Calificación';
+            renderGradeSubjects();
+            renderStudentNames();
+        }
+
+        function closeModal() {
+            document.getElementById('subjectModal').style.display = 'none';
+            document.getElementById('groupModal').style.display = 'none';
+            document.getElementById('gradeModal').style.display = 'none';
+        }
+
+        window.showAddSubjectForm = showAddSubjectForm;
+        window.showAddGroupForm = showAddGroupForm;
+        window.showAssignGradeForm = showAssignGradeForm;
+        window.closeModal = closeModal;
+    </script>
+    <script src="dashboard_teacher.js"></script>
+</body>
+</html>

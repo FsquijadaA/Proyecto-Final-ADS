@@ -42,7 +42,7 @@ body {
     color: #bdc3c7;
 }
 
-.input-group input {
+.input-group input, .input-group select {
     width: 100%;
     padding: 0.5em;
     border: 1px solid #34495e;
