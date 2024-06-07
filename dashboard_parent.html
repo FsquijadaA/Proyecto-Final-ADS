@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Padre - CDB-Education</title>
     <link rel="stylesheet" href="dashboard_parent.css">
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css' rel='stylesheet' />
 </head>
 <body>
     <div class="dashboard-container">
@@ -13,6 +12,7 @@
             <img src="profile-pic.png" alt="Profile Picture" class="profile-pic" id="dashboardProfilePic">
             <h2 id="username">Nombre de Usuario</h2>
             <button onclick="window.location.href='profile.html'">Editar Perfil</button>
+            <button onclick="logout()">Cerrar Sesión</button>
         </div>
         <div class="main-dashboard">
             <div class="top-widgets">
@@ -27,14 +27,27 @@
             </div>
             <div class="bottom-widgets">
                 <div class="widget grades">
-                    <h3>Calificaciones</h3>
+                    <h3>Calificaciones del Estudiante</h3>
                     <ul id="gradesList"></ul>
                 </div>
+                <div class="widget enrolled-subjects">
+                    <h3>Materias Inscritas</h3>
+                    <ul id="enrolledSubjectsList"></ul>
+                </div>
+            </div>
+            <div class="student-info">
+                <h3>Responsable de: <span id="studentName"></span></h3>
             </div>
         </div>
     </div>
+    <script>
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
 
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js'></script>
+        window.logout = logout;
+    </script>
     <script src="dashboard_parent.js"></script>
 </body>
 </html>

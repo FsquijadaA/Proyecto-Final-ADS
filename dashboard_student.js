@@ -26,9 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const enrolledSubjects = JSON.parse(localStorage.getItem('enrolledSubjects')) || [];
     renderEnrolledSubjectsList(enrolledSubjects);
 
-    renderGrades();
-    renderNotifications();
-
     const enrollForm = document.getElementById('enrollForm');
     enrollForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -114,40 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function renderGrades() {
-        const students = JSON.parse(localStorage.getItem('users')) || [];
-        const student = students.find(user => user.username === currentUser.username && user.role === 'student');
-        const gradesList = document.getElementById('gradesList');
-        gradesList.innerHTML = ''; // Clear existing list
-
-        if (student && student.grades) {
-            student.grades.forEach(grade => {
-                const li = document.createElement('li');
-                li.textContent = `Materia: ${grade.subject} - Calificación: ${grade.grade}`;
-                gradesList.appendChild(li);
-            });
-        } else {
-            gradesList.innerHTML = '<li>No hay calificaciones disponibles</li>';
-        }
-    }
-
-    function renderNotifications() {
-        const students = JSON.parse(localStorage.getItem('users')) || [];
-        const student = students.find(user => user.username === currentUser.username && user.role === 'student');
-        const notificationsList = document.getElementById('notificationsList');
-        notificationsList.innerHTML = ''; // Clear existing list
-
-        if (student && student.notifications) {
-            student.notifications.forEach(notification => {
-                const li = document.createElement('li');
-                li.textContent = notification;
-                notificationsList.appendChild(li);
-            });
-        } else {
-            notificationsList.innerHTML = '<li>No hay notificaciones disponibles</li>';
-        }
-    }
-
     function updateCalendarEvents(enrolledSubjects) {
         const events = [];
         enrolledSubjects.forEach(subject => {
@@ -183,4 +146,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Inicializar eventos en el calendario
     updateCalendarEvents(enrolledSubjects);
+
+    // Mostrar calificaciones y notificaciones
+    renderGrades(currentUser.grades || []);
+    renderNotifications(currentUser.notifications || []);
+
+    function renderGrades(grades) {
+        const gradesList = document.getElementById('gradesList');
+        gradesList.innerHTML = '';
+        grades.forEach(grade => {
+            const li = document.createElement('li');
+            li.textContent = `${grade.subject}: ${grade.grade}`;
+            gradesList.appendChild(li);
+        });
+    }
+
+    function renderNotifications(notifications) {
+        const notificationsList = document.getElementById('notificationsList');
+        notificationsList.innerHTML = '';
+        notifications.forEach(notification => {
+            const li = document.createElement('li');
+            li.textContent = notification;
+            notificationsList.appendChild(li);
+        });
+    }
 });
+
+function logout() {
+    localStorage.removeItem('currentUser');
+    window.location.href = 'login.html';
+}

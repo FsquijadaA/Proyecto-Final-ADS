@@ -13,6 +13,7 @@
             <img src="profile-pic.png" alt="Profile Picture" class="profile-pic" id="dashboardProfilePic">
             <h2 id="username">Nombre de Usuario</h2>
             <button onclick="window.location.href='profile.html'">Editar Perfil</button>
+            <button onclick="logout()">Cerrar Sesión</button>
         </div>
         <div class="main-dashboard">
             <div class="top-widgets">
@@ -79,8 +80,14 @@
             document.getElementById('enrollModal').style.display = 'none';
         }
 
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+
         window.showEnrollSubjects = showEnrollSubjects;
         window.closeModal = closeModal;
+        window.logout = logout;
     </script>
     <script src="dashboard_student.js"></script>
 </body>

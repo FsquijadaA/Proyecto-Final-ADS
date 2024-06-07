@@ -17,11 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Obtener el estudiante relacionado
     const students = JSON.parse(localStorage.getItem('users')) || [];
-    const student = students.find(user => user.username === currentUser.child);
+    const student = students.find(user => user.role === 'student' && user.parent === currentUser.username);
 
     if (student) {
+        document.getElementById('studentName').textContent = student.username;
         renderGrades(student.grades || []);
         renderNotifications(student.notifications || []);
+        renderEnrolledSubjects(student.enrolledSubjects || []);
     } else {
         alert('No se encontró al estudiante asociado.');
     }
@@ -53,4 +55,19 @@ document.addEventListener('DOMContentLoaded', () => {
             notificationsList.appendChild(li);
         });
     }
+
+    function renderEnrolledSubjects(subjects) {
+        const enrolledSubjectsList = document.getElementById('enrolledSubjectsList');
+        enrolledSubjectsList.innerHTML = '';
+        subjects.forEach(subject => {
+            const li = document.createElement('li');
+            li.textContent = `${subject.subject} - Grupo: ${subject.group} (${subject.days.join(', ')} ${subject.startTime} - ${subject.endTime})`;
+            enrolledSubjectsList.appendChild(li);
+        });
+    }
 });
+
+function logout() {
+    localStorage.removeItem('currentUser');
+    window.location.href = 'login.html';
+}

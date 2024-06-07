@@ -1,5 +1,7 @@
+let currentUser;
+
 document.addEventListener('DOMContentLoaded', () => {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     if (!currentUser) {
         window.location.href = 'login.html';
@@ -41,6 +43,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function saveProfile() {
+    const parentUsername = document.getElementById('profileParent') ? document.getElementById('profileParent').value : null;
+
+    if (parentUsername) {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const parentUser = users.find(user => user.username === parentUsername && user.role === 'parent');
+
+        if (!parentUser) {
+            alert('El nombre del padre/madre/responsable ingresado no es válido o no tiene el rol de padre/madre.');
+            return;
+        }
+    }
+
     const updatedUser = {
         username: document.getElementById('profileName').value,
         email: document.getElementById('profileEmail').value,
@@ -48,7 +62,8 @@ function saveProfile() {
         address: document.getElementById('profileAddress').value,
         password: document.getElementById('profilePassword').value,
         profilePic: document.getElementById('profilePic').src,
-        parent: document.getElementById('profileParent') ? document.getElementById('profileParent').value : null
+        parent: parentUsername,
+        role: currentUser.role
     };
 
     let users = JSON.parse(localStorage.getItem('users')) || [];
@@ -57,5 +72,15 @@ function saveProfile() {
     localStorage.setItem('currentUser', JSON.stringify(updatedUser));
 
     alert('Perfil actualizado exitosamente.');
-    window.location.href = 'dashboard.html'; // Redirigir al dashboard
+    goBack(); // Regresar al dashboard correspondiente
+}
+
+function goBack() {
+    if (currentUser.role === 'student') {
+        window.location.href = 'dashboard.html';
+    } else if (currentUser.role === 'teacher') {
+        window.location.href = 'dashboard_teacher.html';
+    } else if (currentUser.role === 'parent') {
+        window.location.href = 'dashboard_parent.html';
+    }
 }
